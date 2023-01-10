@@ -2,19 +2,17 @@ import React, { Component } from 'react';
 
 export default class App extends Component {
   state = {
-	todoData : [
-		{
-			id: "1",
-			title: "공부하기",
-			completed: true,
-		},
-		{
-			id: "2",
-			title: "청소하기",
-			completed: false,
-		},
-	]
+    todoData: [
+      {
+        id: '1',
+        title: '공부하기',
+          completed: true,
+        }
+      ]
+    ,
+    value: '',
   }
+
 	btnStyle = {
 		color: "#fff",
 		border: "none",
@@ -37,6 +35,22 @@ export default class App extends Component {
     this.setState({ todoData: newTodoData })
   }
 
+  handleChange = (e) => {
+    this.setState({value: e.target.value })
+  }
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+
+    const newTodo = {
+      id: Date.now(),
+      title: this.state.value,
+      completed: false,
+    }
+
+    this.setState({ todoData: [...this.state.todoData, newTodo] });
+  }
+
 	render() {
 		return (
 			<div className="container">
@@ -44,14 +58,31 @@ export default class App extends Component {
 					<div className="title">
 						<h1>할 일 목록</h1>
           </div>
-          {this.state.todoData.map((data) => (
+          {this.state.todoData?.map((data) => (
 					<div style={this.getStyle()} key={data.id}>
 						<input type="checkbox" defaultChecked={data.completed} />
               {data.title}
 						<button style={this.btnStyle} onClick={() => this.handleClick(data.id)}>x</button>
 					</div>
           ))}
-				</div>
+          
+          <form style={{ display: 'flex' }} onSubmit={this.handleSubmit}>
+            <input
+              type='text'
+              name='value'
+              style={{ flex: '10', padding: '5px' }}
+              placeholder='해야 할 일을 입력하세요.'
+              value={this.state.value}
+              onChange={this.handleChange}
+            />
+            <input
+              type='submit'
+              value='입력'
+              className='btn'
+              style={{ flex: '1' }}
+            />
+          </form>
+        </div>
 			</div>
 		);
 	}

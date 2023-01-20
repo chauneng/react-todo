@@ -24,10 +24,11 @@ export default function App() {
 			<div className="todoBlock">
 				<div className="title">
 					<h1>할 일 목록</h1>
-				</div>
-
+        </div>
+        <h1 className='text-3xl font-bold'>Hello world!</h1>
 				<List todoData={todoData} setTodoData={setTodoData} />
-				<Form handleSubmit={handleSubmit} value={value} setValue={setValue} />
+        <Form handleSubmit={handleSubmit} value={value} setValue={setValue} />
+        
 			</div>
 		</div>
 	);

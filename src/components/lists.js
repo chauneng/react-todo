@@ -1,7 +1,7 @@
 import React from "react";
 import { DragDropContext, Draggable, Droppable } from "react-beautiful-dnd";
 
-export default function List({ todoData, setTodoData }) {
+export default function Lists({ todoData, setTodoData }) {
 	const handleClick = (id) => {
 		const newTodoData = todoData.filter((data) => data.id !== id);
 		setTodoData(newTodoData);
@@ -15,16 +15,16 @@ export default function List({ todoData, setTodoData }) {
 			return data;
 		});
 		setTodoData(newTodoData);
-  };
-  
-  const handleEnd = (result) => {
-    if (!result.destination) return;
+	};
 
-    const newTodoData = [...todoData];
-    const [reorderedItem] = newTodoData.splice(result.source.index, 1);
-    newTodoData.splice(result.destination.index, 0, reorderedItem);
-    setTodoData(newTodoData);
-  }
+	const handleEnd = (result) => {
+		if (!result.destination) return;
+
+		const newTodoData = [...todoData];
+		const [reorderedItem] = newTodoData.splice(result.source.index, 1);
+		newTodoData.splice(result.destination.index, 0, reorderedItem);
+		setTodoData(newTodoData);
+	};
 
 	return (
 		<div>

@@ -30,7 +30,7 @@ export default function Lists({ todoData, setTodoData }) {
 											id={data.id}
 											title={data.title}
 											completed={data.completed}
-											todoData={data.todoData}
+											todoData={todoData}
 											setTodoData={setTodoData}
 											provided={provided}
 											snapshot={snapshot}
